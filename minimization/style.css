@@ -1,0 +1,148 @@
+/* GENERAL STYLES */
+/* reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+    margin: 0;
+    padding: 0;
+}
+fieldset,img{ border: 0; }
+ul { list-style: none; }
+caption,th { text-align: left; }
+th { font-weight: normal; }
+
+/* body styles */
+html{
+    height:100%;
+}
+body{
+    color:#666666;
+    font: 62.5%/1.8  "Lucida Grande", "Trebuchet MS", Tahoma, Verdana, sans-serif; /* 1em = 10px */
+    background: none repeat scroll 0 0 #F6F6F6;
+}
+a {
+    color: #58A6F4;
+    text-decoration: none;
+}
+a:hover{
+    color:#3487DB; 
+    text-decoration:underline;
+}
+.clear{clear:both;}
+
+.content{
+    margin: 0 auto;
+    width: 1100px;
+}
+
+/* ------------Layout-------------- */
+.totalCotainer{
+    background:#fff;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 0 5px #888888;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 1174px;
+} 
+.header{
+    background: none repeat scroll 0 0 #000000;
+    color: #FFFFFF;
+    padding: 17px;
+    position:relative;
+    z-index:9;
+}
+.header .box{
+    
+}
+.header .box.title{
+    
+}
+.header .box.title h2{
+    float: left;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+.visualizationData{
+    min-height: 500px;
+    position: relative;
+}
+.addHash{
+    left: 0;
+    margin: 0 34px;
+    position: absolute;
+    top: 0;
+    z-index: 8;
+    display: none;
+}
+.hashCircle{
+    background: none repeat scroll 0 0 #5ECDEB;
+    border-radius: 1300px 1300px 1300px 1300px;
+    display: block;
+    cursor:pointer;
+    position:absolute;
+    bottom: 14px;
+    right: 23px;
+    
+    transition: 1s ease-in;
+    -moz-transition: 1s ease-in; /* Firefox 4 */
+    -webkit-transition: 1s ease-in; /* Safari and Chrome */
+    -o-transition: 1s ease-in; /* Opera */
+}
+.visualizationData.active .hashCircle{
+    -moz-transform:scaleX(80) scaleY(80);
+    -webkit-transform:scaleX(80) scaleY(80);
+    
+    transition: 1s;
+    -moz-transition: 1s; /* Firefox 4 */
+    -webkit-transition: 1s; /* Safari and Chrome */
+    -o-transition: 1s; /* Opera */
+}
+.hashCircle.bigger{
+    height: 1000px;
+    width: 1000px;
+}
+.hashCircle h2{
+    color: #FFFFFF;
+    padding: 4px 15px;
+    text-align: center;
+    opacity:1;
+    
+    transition: 2s;
+    -moz-transition: 2s; /* Firefox 4 */
+    -webkit-transition: 2s; /* Safari and Chrome */
+    -o-transition: 2s; /* Opera */
+}
+.visualizationData.active .hashCircle h2{
+    opacity:0;
+}
+/*
+.hashCircle:hover .tooltip{
+    display:block;
+}*/
+.hashCircle .tooltip{
+    bottom: 22px;
+    display:none;
+    position: absolute;
+    right: -203px;
+}
+.hashCircle .tooltip .contentInfo{
+    background: none repeat scroll 0 0 #000000;
+    padding:20px;
+}
+
+a.back{
+    background: url("images/button-volver.png") no-repeat scroll -105px 0 transparent;
+    height: 87px;
+    position: absolute;
+    right: 0;
+    text-indent: -9999px;
+    top: 0;
+    width: 80px;
+    z-index: 5;
+    display:none;
+}
+.visualizationData.active  a.back{display:block}
+
+a.back:hover{
+    background: url("images/button-volver.png") no-repeat scroll 0 0 transparent;
+    height: 87px;
+    width: 103px;
+}

@@ -1,0 +1,50 @@
+=DESCRIPTION=
+Cuando hacemos :hover sobre un stack, este puede desplegar algunas de las imagenes para previsualizar sus contenidos.
+Ejemplo funcionando: http://jsfiddle.net/demenece/W3tem/ 
+
+=HTML=
+una lista con su clase a la cual podamos referirnos (en mi ejemplo, .elements)
+
+=CSS=
+1) le damos un poco de espacio al ul (con margin y/o padding). Es necesario ponerle posición relativa así los li se posicionan en relación a este.
+
+.elements{
+    margin: 100px;
+    padding: 40px;
+    position: relative;
+}
+
+2) seteamos un tamaño a cada li (en el ejemplo, en vez de height uso padding para que quede centrado verticalmente), los posicionamos de forma absoluta para que se encimen entre sí, y le ponemos una transición. Debajo de eso, hay unos “estilos extras” para que se vea bien ;).
+
+.elements li{
+position: absolute;
+padding: 20px 0;
+width: 60px;
+-moz-transition: all .25s ease-in-out;
+-webkit-transition: all .25s ease-in-out;
+transition: all .25s ease-in-out;
+background-color: #EEE;
+border: 2px solid #FFF;
+box-shadow: 0 0 5px #888;
+text-align: center;
+}
+
+3) seleccionamos cada uno de sus hijos y en el estado hover lo trasladamos en el sentido de las agujas del reloj, empezando por ubicar al primero un poco más arriba y a la izquierda:
+
+.elements:hover li:nth-child(1) {
+-moz-transform: rotate(-15deg) translate(-2.5em,-2.5em);
+-webkit-transform: rotate(-15deg) translate(-2.5em,-2.5em);
+transform: rotate(-15deg) translate(-2.5em,-2.5em);
+}
+
+agregamos también un rotate para que resulte en algo más desordenado.
+
+4) Para indicar que hay elementos agrupados, podemos girar un poco menos algunos de los items en el estado normal (no en hover).
+
+.elements li:nth-child(5) {
+    -moz-transform: rotate(7deg);
+    -webkit-transform: rotate(7deg);
+}
+
+=ACKNOWLEDGEMENTS=
+Made by Damian Calderon (http://www.twitter.com/demenece) at Zauber Hackatons (http://zaubersoftware.com)

@@ -1,0 +1,53 @@
+body {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 100%;
+	background: #eee;
+	color: #333;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+#animateTest {
+	text-align: center;
+	background: orange;
+	padding: 40px;
+	width: 200px;
+	color: #fff;
+	margin: 0 auto;
+	border-radius: 5px;
+	font-weight: bold;
+	
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
+	
+	-webkit-animation-duration: 1s;
+	-webkit-animation-delay: .2s;
+	-webkit-animation-timing-function: ease;
+	-webkit-animation-fill-mode: both;
+	-moz-animation-duration: 1s;
+	-moz-animation-delay: .2s;
+	-moz-animation-timing-function: ease;
+	-moz-animation-fill-mode: both;
+	-ms-animation-duration: 1s;
+	-ms-animation-delay: .2s;
+	-ms-animation-timing-function: ease;
+	-ms-animation-fill-mode: both;
+	animation-duration: 1s;
+	animation-delay: .2s;
+	animation-timing-function: ease;
+	animation-fill-mode: both;
+}
+
+.butt {
+color: white;
+background: #666;
+padding: .5em .75em;
+font-weight: bold;
+text-decoration: none;
+border-radius: 5px;
+margin: .5em .25em;
+line-height: 1.5em;
+display: inline-block;
+}
