@@ -1,0 +1,110 @@
+=DESCRIPTION=
+Esta animación se puede usar para mostrar el cambio entre elementos en una pantalla. 
+El que está adelante pasa al fondo y el del fondo viene hacia adelnate. 
+
+=HTML=
+En el ejemplo hay dos <div> que son los 'objetos' que se van a intercambiar.
+
+=CSS=
+1) Hay un contenedor principal, con los objetos adentro. Este tiene overflow:hidden para que se vea el efecto.
+
+.container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 30px auto;
+    overflow: hidden;
+}
+
+2) Se le da estilo a los 'objetos'. En este caso les puse una imágen adentro.
+
+.contenedor-foto {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.img {
+    width: 100%;
+}
+
+3) Al elemento que queremos que aparezca adelante se le agrega la clase .adelante, que después se intercambiará entre los 'objetos'.
+
+.adelante {
+    z-index: 10;
+}
+
+4) Una vez que el JS hace su 'magia' se aplican las diferentes animaciones.
+
+.zoom-in {
+    -webkit-animation-name: zoom-in;
+    -webkit-animation-duration: .7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes zoom-in {
+    00% {
+   -webkit-transform: matrix(.6, 0, 0, .6, 0, 0) perspective(900) rotateY(0deg);
+   z-index: 0;
+ }
+   50% {
+   -webkit-transform: matrix(.8, 0, 0, .8, 75, 0) perspective(500) rotateY(0deg);
+    z-index: 0;
+ }
+   100% {
+   -webkit-transform: matrix(1, 0, 0, 1, 0, 0) perspective(1000) rotateY(0deg);
+    
+ }
+}
+.zoom-out {
+    -webkit-animation-name: zoom-out;
+    -webkit-animation-duration: .7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: alternate;
+    -webkit-transition-timing-function: ease-in-out;
+}
+@-webkit-keyframes zoom-out {
+   0% {
+   -webkit-transform: matrix(1, 0, 0, 1, 0, 0) perspective(900) rotateY(0deg);
+    z-index: 10;
+ }
+   33% {
+   -webkit-transform: matrix(1.2, 0, 0, 1.2, -75, 0) perspective(900) rotateY(0deg);
+ }
+   75% {
+   -webkit-transform: matrix(.6, 0, 0, .6, -20, 0) perspective(900) rotateY(0deg);
+ }
+   100% {
+   -webkit-transform: matrix(.8, 0, 0, .8, 0, 0) perspective(1000) rotateY(0deg);
+ }
+}
+
+=JS=
+El JS sirve para agregar o quitar las clases necesarias para que la se logre el efecto que queremos en la animación.
+
+$(function() {
+    $('.stackable').click(function() {
+
+	//Se definen las variables
+	var adelante = $(".stackable.adelante");       //esta variable identifica al objeto que está adelante
+	var atras = $(".stackable:not(.adelante)");    //esta variable identifica al objeto que está atras 
+        
+        //Se cambian las clases según el estadop del 'objeto'
+	atras.addClass("zoom-in");                     //al objeto que está atrás se le agrega la clase 'zoom-in', 
+							 que dispara la animación hacia adelante.
+	atras.addClass("adelante");                    //al objeto que está atrás se le agrega la clase 'adelante', 
+							 asi al terminar la animación queda delante del otro.
+	adelante.addClass("zoom-out");                 //al objeto que está atrás se le agrega la clase 'zoom-out', 
+							 que dispara la animación hacia atrás.
+	adelante.removeClass("adelante");              //al objeto que está atrás se le quita la clase 'adelante', 
+							 asi al terminar la animación queda detrás del otro.
+    });
+    
+	$('.stackable').bind("webkitAnimationEnd", function() {
+		$(".stackable").removeClass("zoom-in zoom-out");
+	});
+});
+
+=ACKNOWLEDGEMENTS=
+Made by Sebastian Zelonka (http://www.twitter.com/sebazelonka) at Zauber Hackatons (http://zaubersoftware.com)

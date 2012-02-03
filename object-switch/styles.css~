@@ -1,0 +1,73 @@
+.container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 30px auto;
+    overflow: hidden;
+}
+.img {
+    width: 100%;
+}
+.transform1 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.zoom-in {
+    -webkit-animation-name: zoom-in;
+    -webkit-animation-duration: .7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes zoom-in {
+    00% {
+   -webkit-transform: matrix(.6, 0, 0, .6, 0, 0) perspective(900) rotateY(0deg);
+   z-index: 0;
+ }
+   50% {
+   -webkit-transform: matrix(.8, 0, 0, .8, 75, 0) perspective(500) rotateY(0deg);
+    z-index: 0;
+ }
+   100% {
+   -webkit-transform: matrix(1, 0, 0, 1, 0, 0) perspective(1000) rotateY(0deg);
+    
+ }
+}
+
+.transform2 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;  
+}
+.zoom-out {
+    -webkit-animation-name: zoom-out;
+    -webkit-animation-duration: .7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: alternate;
+    -webkit-transition-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes zoom-out {
+   0% {
+   -webkit-transform: matrix(1, 0, 0, 1, 0, 0) perspective(900) rotateY(0deg);
+    z-index: 10;
+ }
+   33% {
+   -webkit-transform: matrix(1.2, 0, 0, 1.2, -75, 0) perspective(900) rotateY(0deg);
+ }
+   75% {
+   -webkit-transform: matrix(.6, 0, 0, .6, -20, 0) perspective(900) rotateY(0deg);
+ }
+   100% {
+   -webkit-transform: matrix(.8, 0, 0, .8, 0, 0) perspective(1000) rotateY(0deg);
+ }
+}
+
+.adelante {
+    z-index: 10;
+}
+
+
