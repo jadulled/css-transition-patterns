@@ -3,14 +3,11 @@
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <title>Deal In - CSS Transition Patterns</title>
-          <script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
-          <link rel="stylesheet" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" type="text/css" media="screen">
           <link rel="stylesheet" href="stylesheets/style.css">
     </head>
-    
-<body onload="prettyPrint()">
+    <body>
         <h1>Deal In</h1>
-        <a href="example.html">Live example</a>
+        <a href="example">Live example</a>
         <h2>Tutorial</h2>
         <div>
             <p>The idea is using the pattern Saving indicator from <a href="http://www.ui-transitions.com/#home">http://www.ui-transitions.com/#home</a> (category Orientation Transitions) as reference but in reverse mode, make a dealing effect to a canvas.</p>
@@ -19,85 +16,98 @@
             <ol>
                <li><p>The html code:</p>
                 <p>Head Section:</p>
-                <pre class="prettyprint">
-&lt;link rel="stylesheet" href="stylesheets/style.css"&gt;
-&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"&gt;&lt;/script&gt;
-                </pre>
+                <code>&lt;link rel="stylesheet" href="stylesheets/style.css"&gt;<br>
+                &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"&gt;&lt;/script&gt;
+                </code>
     </li>
                 <p>Body:</p>
-                <pre class="prettyprint">&lt;div id="animateTest"&gt;<br>   &lt;p&gt;Test Card.&lt;/p&gt;
-&lt;/div&gt;
-   &lt;a class="butt butt-small" href="#" onclick="$('#animateTest').addClass('dealIn');"&gt;dealIn&lt;/a&gt;<br></pre>
+                <code>&lt;div id="animateTest"&gt;<br>
+                &lt;p&gt;Test Card.&lt;/p&gt;<br>
+            &lt;/div&gt;<br>
+            &lt;a class="butt butt-small" href="#" onclick="$('#animateTest').addClass('dealIn');"&gt;dealIn&lt;/a&gt;<br></code>
             </li>
     <li><p>Now the CSS.</p>
                 <p>In css are two two things to define: First, give a name to the animation and use the global properties like animation name, duration, delay, iteration count, type of easing, and direction</p>
                 
                 <p>Let see:</p><br>
 </li>
-    <pre class="prettyprint">
-.dealIn {
-/*W3C*/
+    <code>
+    .dealIn {
+    /*W3C*/
      animation-name: dealIn; /*use this name to call the animation*/
-     animation-duration: 1s ease-in-out;
-     animation-delay: 0s;
-     animation-iteration-count: 1; /*can be a number or infinite*/
-     animation-timing-function: ease-in-out; animation-direction: normal; /* if you want to &ldquo;rewind&rdquo; use the option alternate.*/
-
-/*For webkit*/
+     <br>
+    animation-duration: 1s ease-in-out;
+    <br>
+    animation-delay: 0s;
+    <br>
+    animation-iteration-count: 1; /*can be a number or infinite*/
+    <br>
+    animation-timing-function: ease-in-out;<br>
+animation-direction: normal; /* if you want to &ldquo;rewind&rdquo; use the option alternate.*/
+    <br>
+    /*For webkit*/
+    <br>
     -webkit-animation-name: dealIn;
+    <br>
     -webkit-animation-duration: 1s;
+    <br>
     -webkit-animation-delay: 0s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-direction: normal;
-/*For Mozilla*/
-    -moz-animation-name: dealIn;
-    -moz-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;<br>
+    -webkit-animation-timing-function: ease-in-out;<br>
+    -webkit-animation-direction: normal; <br>
+    /*For Mozilla*/
+    <br>
+    -moz-animation-name: dealIn;<br>
+    -moz-animation-duration: 1s;<br>
     -moz-animation-delay: 0s;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: ease-in-out;
-    -moz-animation-direction: normal;
+    <br>
+    -moz-animation-iteration-count: infinite;<br>
+-moz-animation-timing-function: ease-in-out;<br>
+-moz-animation-direction: normal; <br>
     }
-</pre><br>
+    </code><br>
     <p>Then, according to browser define the keyframes: They are instances where the properties will change over the animation.<br>
     </p>
-    <pre class="prettyprint">
-@keyframes dealIn {
-    0% { transform: scale(0.6); transform-origin: 47% 53%;}
+    <code>
+    @keyframes dealIn {<br>
+        0% { transform: scale(0.6); transform-origin: 47% 53%;}
+        <br>
     25% {transform: scale(1.4) rotate(-56deg);transform-origin: 37% 53%;}
+    <br>
     100% {transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);transform-origin: 50% 50%;}
-}
-@-webkit-keyframes dealIn {
-    0%   { 
-         -webkit-transform: scale(0.6);
-         -webkit-transform-origin: 47% 53%;
-        }
-    25%  {
-         -webkit-transform: scale(1.4) rotate(-56deg);
+    <br>
+    }<br>
+    @-webkit-keyframes dealIn {<br>
+        0% { -webkit-transform: scale(0.6);
+             -webkit-transform-origin: 47% 53%;
+           }
+        <br>
+    25% {-webkit-transform: scale(1.4) rotate(-56deg);
          -webkit-transform-origin: 37% 53%;
-        }
-    100% {
-         -webkit-transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);
+       }
+    <br>
+    100%{-webkit-transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);
          -webkit-transform-origin: 50% 50%;
-        }
-}
-@-moz-keyframes dealIn {
-    0%   {
+       }<br>
+} <br>
+    @-moz-keyframes dealIn {<br>
+         0% {
          -moz-transform: scale(0.6);
          -moz-transform-origin: 47% 53%;
          }
-    25%  {
-         -moz-transform: scale(1.4) rotate(-56deg);
-         -moz-transform-origin: 37% 53%;
-         }
-     100%{
-         -moz-transform: scale(1.0) rotate(304deg) translateX(273px) translateY(205px);
-         -moz-transform-origin: 50% 50%;
-         }
-}</pre>
+         <br>
+    25% {
+    -moz-transform: scale(1.4) rotate(-56deg);
+    -moz-transform-origin: 37% 53%;
+    }<br>
+100% {
+    -moz-transform: scale(1.0) rotate(304deg) translateX(273px) translateY(205px);
+    -moz-transform-origin: 50% 50%;
+    }
+<br>
+}</code>
     <p>Try it!</p>
-    <h2>ACKNOWLEDGEMENTS</h2>
-<p>Made by Bacardo (bacardo@gmail.com) at Zauber Hackatons (http://zaubersoftware.com)</p>
-
+    </strong>
+       
     </body>
 </html>
