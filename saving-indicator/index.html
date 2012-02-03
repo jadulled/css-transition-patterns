@@ -9,102 +9,105 @@
         <h1>Deal In</h1>
         <a href="example">Live example</a>
         <h2>Tutorial</h2>
-        <div><strong id="internal-source-marker_0.5821870367508382">The idea is using the pattern Saving indicator from <a href="http://www.ui-transitions.com/#home">http://www.ui-transitions.com/#home</a> (category Orientation Transitions) as reference but in reverse mode, make a dealing effect to a canvas.<br>
-            <br>
-            We are using the animation tools from <a href="http://westciv.com/tools/animations/">WestCiv</a> that allows to change the animation properties in real-time with graphical interface. Making the task a lot easier<br>
-            <br>
-            With the <a href="http://daneden.me/animate/">Daneden</a> html code we trigger the animations (by jquery changes the button style when clicked)<br>
-            The html code:<br>
-            <br>
-            Head Section:<br>
-            <br>
-            &lt;link rel="stylesheet" href="stylesheets/style.css"&gt;<br>
-            &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"&gt;&lt;/script&gt;<br>
+        <div>
+            <p>The idea is using the pattern Saving indicator from <a href="http://www.ui-transitions.com/#home">http://www.ui-transitions.com/#home</a> (category Orientation Transitions) as reference but in reverse mode, make a dealing effect to a canvas.</p>
+            <p>We are using the animation tools from <a href="http://westciv.com/tools/animations/">WestCiv</a> that allows to change the animation properties in real-time with graphical interface. Making the task a lot easier</p>
+            <p>With the <a href="http://daneden.me/animate/">Daneden</a> html code we trigger the animations (by jquery changes the button style when clicked)</p>
+            <ol>
+               <li><p>The html code:</p>
+                <p>Head Section:</p>
+                <code>&lt;link rel="stylesheet" href="stylesheets/style.css"&gt;<br>
+                &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"&gt;&lt;/script&gt;
+                </code>
+    </li>
+                <p>Body:</p>
+                <code>&lt;div id="animateTest"&gt;<br>
+                &lt;p&gt;Test Card.&lt;/p&gt;<br>
+            &lt;/div&gt;<br>
+            &lt;a class="butt butt-small" href="#" onclick="$('#animateTest').addClass('dealIn');"&gt;dealIn&lt;/a&gt;<br></code>
+            </li>
+    <li><p>Now the CSS.</p>
+                <p>In css are two two things to define: First, give a name to the animation and use the global properties like animation name, duration, delay, iteration count, type of easing, and direction</p>
+                
+                <p>Let see:</p><br>
+</li>
+    <code>
+    .dealIn {
+    /*W3C*/
+     animation-name: dealIn; /*use this name to call the animation*/
+     <br>
+    animation-duration: 1s ease-in-out;
     <br>
-            Body:<br>
+    animation-delay: 0s;
     <br>
-    &lt;div id="animateTest"&gt;<br>
-            &lt;p&gt;Test Card.&lt;/p&gt;<br>
-    &lt;/div&gt;    <br>
-    &lt;a class="butt butt-small" href="#" onclick="$('#animateTest').addClass('dealIn');"&gt;dealIn&lt;/a&gt;<br>
+    animation-iteration-count: 1; /*can be a number or infinite*/
     <br>
-            Now the CSS. <br>
+    animation-timing-function: ease-in-out;<br>
+animation-direction: normal; /* if you want to &ldquo;rewind&rdquo; use the option alternate.*/
     <br>
-            In css are two two things to define: First, give a name to the animation and use the global properties like animation name, duration, delay, iteration count, type of easing, and direction<br>
+    /*For webkit*/
     <br>
-            Let see:<br>
+    -webkit-animation-name: dealIn;
     <br>
-    <p dir="ltr">.dealIn {</p>
+    -webkit-animation-duration: 1s;
     <br>
-    <p dir="ltr">/*W3C*/</p>
-    <p dir="ltr">  animation-name: dealIn; /*use this name to call the animation*/</p>
-    <p dir="ltr">  animation-duration: 1s ease-in-out;</p>
-    <p dir="ltr">  animation-delay: 0s;</p>
-    <p dir="ltr">  animation-iteration-count: 1; /*can be a number or infinite*/</p>
-    <p dir="ltr">  animation-timing-function: ease-in-out;</p>
-    <p dir="ltr">  animation-direction: normal; /* if you want to &ldquo;rewind&rdquo; use the option alternate.*/</p>
+    -webkit-animation-delay: 0s;
+    -webkit-animation-iteration-count: infinite;<br>
+    -webkit-animation-timing-function: ease-in-out;<br>
+    -webkit-animation-direction: normal; <br>
+    /*For Mozilla*/
     <br>
-    <p dir="ltr">/*For webkit*/</p>
-    <p dir="ltr">  -webkit-animation-name: dealIn;</p>
-    <p dir="ltr">  -webkit-animation-duration: 1s;</p>
-    <p dir="ltr">  -webkit-animation-delay: 0s;</p>
-    <p dir="ltr">  -webkit-animation-iteration-count: infinite;</p>
-    <p dir="ltr">  -webkit-animation-timing-function: ease-in-out;</p>
-    <p dir="ltr">  -webkit-animation-direction: normal;</p>
+    -moz-animation-name: dealIn;<br>
+    -moz-animation-duration: 1s;<br>
+    -moz-animation-delay: 0s;
     <br>
-    <p dir="ltr">/*For Mozilla*/</p>
-    <p dir="ltr">  -moz-animation-name: dealIn;</p>
-    <p dir="ltr">  -moz-animation-duration: 1s;</p>
-    <p dir="ltr">  -moz-animation-delay: 0s;</p>
-    <p dir="ltr">  -moz-animation-iteration-count: infinite;</p>
-    <p dir="ltr">  -moz-animation-timing-function: ease-in-out;</p>
-    <p dir="ltr">  -moz-animation-direction: normal;</p>
+    -moz-animation-iteration-count: infinite;<br>
+-moz-animation-timing-function: ease-in-out;<br>
+-moz-animation-direction: normal; <br>
+    }
+    </code><br>
+    <p>Then, according to browser define the keyframes: They are instances where the properties will change over the animation.<br>
+    </p>
+    <code>
+    @keyframes dealIn {<br>
+        0% { transform: scale(0.6); transform-origin: 47% 53%;}
+        <br>
+    25% {transform: scale(1.4) rotate(-56deg);transform-origin: 37% 53%;}
     <br>
-    <p dir="ltr">}</p>
+    100% {transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);transform-origin: 50% 50%;}
     <br>
-            Then, according to browser define the keyframes: They are instances where the properties will change over the animation.<br>
+    }<br>
+    @-webkit-keyframes dealIn {<br>
+        0% { -webkit-transform: scale(0.6);
+             -webkit-transform-origin: 47% 53%;
+           }
+        <br>
+    25% {-webkit-transform: scale(1.4) rotate(-56deg);
+         -webkit-transform-origin: 37% 53%;
+       }
     <br>
-            @keyframes dealIn {<br>
-    <p dir="ltr">0% { transform: scale(0.6); transform-origin: 47% 53%;</p>
-    <p dir="ltr"> }</p>
-    <p dir="ltr">25% {transform: scale(1.4) rotate(-56deg);transform-origin: 37% 53%;</p>
-    <p dir="ltr"> }</p>
-    <p dir="ltr">100% {transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);</p>
-    <p dir="ltr"> transform-origin: 50% 50%;</p>
-    <p dir="ltr">}</p>
-            }<br>
-    <br>
-            @-webkit-keyframes dealIn {<br>
-    <p dir="ltr">0% { -webkit-transform: scale(0.6);</p>
-    <p dir="ltr">        -webkit-transform-origin: 47% 53%;</p>
-    <p dir="ltr">}</p>
-    <p dir="ltr">25% {</p>
-    <p dir="ltr">       -webkit-transform: scale(1.4) rotate(-56deg);</p>
-    <p dir="ltr">       -webkit-transform-origin: 37% 53%;</p>
-    <p dir="ltr"> }</p>
-    <p dir="ltr">100% {</p>
-    <p dir="ltr">       -webkit-transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);</p>
-    <p dir="ltr">       -webkit-transform-origin: 50% 50%;</p>
-    <p dir="ltr">}</p>
-            }<br>
-    <br>
-            @-moz-keyframes dealIn {<br>
-    <p dir="ltr">0% {</p>
-    <p dir="ltr">       -moz-transform: scale(0.6);</p>
-    <p dir="ltr">       -moz-transform-origin: 47% 53%;</p>
-    <p dir="ltr">}</p>
-    <p dir="ltr">25% {</p>
-    <p dir="ltr">       -moz-transform: scale(1.4) rotate(-56deg);</p>
-    <p dir="ltr">       -moz-transform-origin: 37% 53%;</p>
-    <p dir="ltr">}</p>
-    <p dir="ltr">100% {</p>
-    <p dir="ltr">        -moz-transform: scale(1.0) rotate(304deg) translateX(273px) translateY(205px);</p>
-    <p dir="ltr">        -moz-transform-origin: 50% 50%;</p>
-    <p dir="ltr">}</p>
-            }<br>
-    <br>
-            Try it!</strong></div>
-        <p>
-        </p>
+    100%{-webkit-transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);
+         -webkit-transform-origin: 50% 50%;
+       }<br>
+} <br>
+    @-moz-keyframes dealIn {<br>
+         0% {
+         -moz-transform: scale(0.6);
+         -moz-transform-origin: 47% 53%;
+         }
+         <br>
+    25% {
+    -moz-transform: scale(1.4) rotate(-56deg);
+    -moz-transform-origin: 37% 53%;
+    }<br>
+100% {
+    -moz-transform: scale(1.0) rotate(304deg) translateX(273px) translateY(205px);
+    -moz-transform-origin: 50% 50%;
+    }
+<br>
+}</code>
+    <p>Try it!</p>
+    </strong>
+       
     </body>
 </html>
