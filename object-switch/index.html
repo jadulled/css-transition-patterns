@@ -20,7 +20,7 @@
 <ol>
 <li>
 1) Hay un contenedor principal, con los objetos adentro. Este tiene overflow:hidden para que se vea el efecto.
-<pre>
+<pre class="prettyprint">
 .container {
     position: relative;
     width: 100px;
@@ -32,7 +32,7 @@
 </li>
 <li>
 2) Se le da estilo a los 'objetos'. En este caso les puse una imágen adentro.
-<pre>
+<pre class="prettyprint">
 .contenedor-foto {
     position: absolute;
     width: 100px;
@@ -46,7 +46,7 @@
 </li>
 <li>
 3) Al elemento que queremos que aparezca adelante se le agrega la clase .adelante, que después se intercambiará entre los 'objetos'.
-<pre>
+<pre class="prettyprint">
 .adelante {
     z-index: 10;
 }
@@ -54,7 +54,7 @@
 </li>
 <li>
 4) Una vez que el JS hace su 'magia' se aplican las diferentes animaciones.
-<pre>
+<pre class="prettyprint">
 .zoom-in {
     -webkit-animation-name: zoom-in;
     -webkit-animation-duration: .7s;
@@ -103,7 +103,7 @@
 </ol>
 <h2>JS</h2>
 <p>El JS sirve para agregar o quitar las clases necesarias para que la se logre el efecto que queremos en la animación.</p>
-<pre>
+<pre class="prettyprint">
 $(function() {
     $('.stackable').click(function() {
 
