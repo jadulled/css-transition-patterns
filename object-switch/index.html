@@ -2,20 +2,22 @@
 <html>
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-        <title>CSS Transition Patterns</title>
+        <title>CSS Transition Patterns - Object Switch</title>
     </head>
     <body>
-        <h1>CSS Transition Patterns</h1>
-        =DESCRIPTION=
-Esta animación se puede usar para mostrar el cambio entre elementos en una pantalla. 
-El que está adelante pasa al fondo y el del fondo viene hacia adelnate. 
+        <h1>Object Switch</h1>
+        <h2>DESCRIPTION</h2>
+	<p>Esta animación se puede usar para mostrar el cambio entre elementos en una pantalla. 
+	El que está adelante pasa al fondo y el del fondo viene hacia adelnate.</p>
 
-=HTML=
-En el ejemplo hay dos <div> que son los 'objetos' que se van a intercambiar.
+	<h2>HTML</h2>
+	<p>En el ejemplo hay dos <div> que son los 'objetos' que se van a intercambiar.</p>
 
-=CSS=
+	<h2>CSS</h2>
+<ol>
+<li>
 1) Hay un contenedor principal, con los objetos adentro. Este tiene overflow:hidden para que se vea el efecto.
-
+<pre>
 .container {
     position: relative;
     width: 100px;
@@ -23,9 +25,11 @@ En el ejemplo hay dos <div> que son los 'objetos' que se van a intercambiar.
     margin: 30px auto;
     overflow: hidden;
 }
-
+</pre>
+</li>
+<li>
 2) Se le da estilo a los 'objetos'. En este caso les puse una imágen adentro.
-
+<pre>
 .contenedor-foto {
     position: absolute;
     width: 100px;
@@ -35,15 +39,19 @@ En el ejemplo hay dos <div> que son los 'objetos' que se van a intercambiar.
 .img {
     width: 100%;
 }
-
+</pre>
+</li>
+<li>
 3) Al elemento que queremos que aparezca adelante se le agrega la clase .adelante, que después se intercambiará entre los 'objetos'.
-
+<pre>
 .adelante {
     z-index: 10;
 }
-
+</pre>
+</li>
+<li>
 4) Una vez que el JS hace su 'magia' se aplican las diferentes animaciones.
-
+<pre>
 .zoom-in {
     -webkit-animation-name: zoom-in;
     -webkit-animation-duration: .7s;
@@ -87,10 +95,12 @@ En el ejemplo hay dos <div> que son los 'objetos' que se van a intercambiar.
    -webkit-transform: matrix(.8, 0, 0, .8, 0, 0) perspective(1000) rotateY(0deg);
  }
 }
-
-=JS=
-El JS sirve para agregar o quitar las clases necesarias para que la se logre el efecto que queremos en la animación.
-
+</pre>
+</li>
+</ol>
+<h2>JS</h2>
+<p>El JS sirve para agregar o quitar las clases necesarias para que la se logre el efecto que queremos en la animación.</p>
+<pre>
 $(function() {
     $('.stackable').click(function() {
 
@@ -113,8 +123,8 @@ $(function() {
 		$(".stackable").removeClass("zoom-in zoom-out");
 	});
 });
-
-=ACKNOWLEDGEMENTS=
+</pre>
+<h2>ACKNOWLEDGEMENTS<h2>
 Made by Sebastian Zelonka (http://www.twitter.com/sebazelonka) at Zauber Hackatons (http://zaubersoftware.com)
  
     </body>
