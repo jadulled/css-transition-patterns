@@ -1,12 +1,3 @@
-body {
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 100%;
-    background: #eee;
-    color: #333;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
 #animateTest {
     text-align: center;
     background: #FE0000;

@@ -1,0 +1,84 @@
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+
+	body {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        -webkit-font-smoothing: antialiased;
+        line-height: 24px;
+        color: #333;
+    }
+    
+    h2 {
+        margin: 0 0 10px 0;
+    }
+    
+    a {
+        color: #3393CD;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #03639D;
+        text-decoration: underline;
+    }
+    
+    .main-title {
+        margin: 3em 0;
+        border-bottom: 1px solid #999;
+    }
+    
+        .main-title h1 {
+            line-height: 36px;
+        }
+    
+        .subtitle {
+            font-size: 1em;
+            font-weight: normal;
+            line-height: 16px;
+        }
+        
+	.main-list li {
+	    list-style-type:none;
+	    margin-bottom: 20px;
+	}
+	
+	.main-list li a{
+	    border: 1px solid #EEE;
+	    font-weight: bold;
+	    display: block;
+	    padding: 10px;
+	}
+	
+	.main-footer {
+	    margin: 3em 0 1.5em;
+	    padding: 0.5em 0;
+	    border-top: 1px solid #999;
+	}
+
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 767px) {
+
+	body {
+		
+	}
+
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+
+}
