@@ -64,6 +64,23 @@
 	    font-size: 24px;
 	    line-height: 1.2em;
 	}
+	
+	.demo {
+	    background-color: #EEE;
+	    padding-bottom: 20px;
+	}
+	
+	.demo h3 {
+	    padding: 10px 20px;
+	}
+	
+	.demo .btn {
+	    margin: 0 20px 10px;
+	}
+	
+	.demo .alert {
+	    margin: 0 20px
+	}
 
 /* ============================= */
 /* ! Layout for mobile version   */
