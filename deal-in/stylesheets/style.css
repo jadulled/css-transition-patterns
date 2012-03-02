@@ -45,6 +45,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
   animation-direction: normal;
+  animation-fill-mode:forwards;
 
   -webkit-animation-name: discardOnClose;
   -webkit-animation-duration: 1s;
@@ -52,6 +53,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-direction: normal;
+  -webkit-animation-fill-mode:forwards;
 
   -moz-animation-name: discardOnClose;
   -moz-animation-duration: 1s;
@@ -59,6 +61,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   -moz-animation-iteration-count: 1;
   -moz-animation-timing-function: ease-in-out;
   -moz-animation-direction: normal;
+  -moz-animation-fill-mode:forwards;
   
 }
 
