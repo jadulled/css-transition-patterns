@@ -3,46 +3,80 @@
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <title>Deal In - CSS Transition Patterns</title>
+               
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
         <script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
-        <script type="text/javascript" src="../scripts/css3-mediaqueries.js"></script>
-        <link rel="stylesheet" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" type="text/css" media="screen">
-        <link rel="stylesheet" href="stylesheets/style.css">
-          
-        <link rel="stylesheet" href="../stylesheets/1140.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="../stylesheets/bootstrap.min.css" type="text/css" media="screen" />
+        <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" media="screen" />
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
         <!--[if IE]>
-            <link rel="stylesheet" href="../stylesheets/ie.css" type="text/css" media="screen" />
+            <link rel="stylesheet" href="stylesheets/ie.css" type="text/css" media="screen" />
         <![endif]-->
     </head>
     
 <body onload="prettyPrint()" class="tutorial-article">
-        <h1>Deal In</h1>
-        <a href="example.html">Live example</a>
-        <h2>Tutorial</h2>
-        <div>
-            <p>The idea is using the pattern Saving indicator from <a href="http://www.ui-transitions.com/#home">http://www.ui-transitions.com/#home</a> (category Orientation Transitions) as reference but in reverse mode, make a dealing effect to a canvas.</p>
-            <p>We are using the animation tools from <a href="http://westciv.com/tools/animations/">WestCiv</a> that allows to change the animation properties in real-time with graphical interface. Making the task a lot easier</p>
-            <p>With the <a href="http://daneden.me/animate/">Daneden</a> html code we trigger the animations (by jquery changes the button style when clicked)</p>
-            <ol>
-               <li><p>The html code:</p>
-                <p>Head Section:</p>
-                <pre class="prettyprint">
+        <div class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="brand" href="#">
+                  CSS Transition patterns
+                </a>
+            </div>
+          </div>
+        </div>
+
+<article class="container-fluid">
+            <div class="row-fluid">
+                <hgroup class="span12 main-title">
+                    <h1>Deal In</h1>
+                    
+                    
+                </hgroup>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <h3>Description</h3>
+                                <p>The idea is using the pattern Saving indicator from <a href="http://www.ui-transitions.com/#home">http://www.ui-transitions.com/#home</a> (category Orientation Transitions) as reference but in reverse mode, make a dealing effect to a canvas.</p>
+                                <p>We are using the animation tools from <a href="http://westciv.com/tools/animations/">WestCiv</a> that allows to change the animation properties in real-time with graphical interface. Making the task a lot easier</p>
+                                <p>With the <a href="http://daneden.me/animate/">Daneden</a> html code we trigger the animations (by jquery changes the button style when clicked)</p>
+                        </div>
+                        <div class="span4 offset8">
+                            <h3>Working Demo</h3>
+                            <p><a class="btn btn-primary btn-large" href="example.html">Working demo</a></p>
+                            
+                        </div>
+                    </div>
+
+                    <h2>The HTML needed</h2>
+                    <ol>
+                        <li>
+                            <h3>Head Section:</h3>
+<pre class="prettyprint">
 &lt;link rel="stylesheet" href="stylesheets/style.css"&gt;
 &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"&gt;&lt;/script&gt;
-                </pre>
-    </li>
-                <p>Body:</p>
-                <pre class="prettyprint">&lt;div id="animateTest"&gt;<br>   &lt;p&gt;Test Card.&lt;/p&gt;
-&lt;/div&gt;
-   &lt;a class="butt butt-small" href="#" onclick="$('#animateTest').addClass('dealIn');"&gt;dealIn&lt;/a&gt;<br></pre>
-            </li>
-    <li><p>Now the CSS.</p>
-                <p>In css are two two things to define: First, give a name to the animation and use the global properties like animation name, duration, delay, iteration count, type of easing, and direction</p>
-                
-                <p>Let see:</p><br>
-</li>
-    <pre class="prettyprint">
+</pre>
+                        </li>
+                        <li>
+                            <h3>Body:</h3>
+<pre class="prettyprint">
+&lt;div id="animateTest"&gt;<br>   &lt;p&gt;Test Card.&lt;/p&gt;&lt;/div&gt;
+&lt;a class="butt butt-small" href="#" onclick="$('#animateTest').addClass('dealIn');"&gt;dealIn&lt;/a&gt;
+</pre>
+                        </li>
+                       
+                    </ol>   
+                    <h2>The HTML needed</h2>
+
+                            <p>In css are two two things to define:</p> 
+                            <p>First, give a name to the animation and use the global properties like animation name, duration, delay, iteration count, type of easing, and direction</p>
+                            <p>Let's see:</p>
+                        
+<pre class="prettyprint">
 .dealIn {
 /*W3C*/
      animation-name: dealIn; /*use this name to call the animation*/
@@ -65,11 +99,10 @@
     -moz-animation-iteration-count: infinite;
     -moz-animation-timing-function: ease-in-out;
     -moz-animation-direction: normal;
-    }
-</pre><br>
-    <p>Then, according to browser define the keyframes: They are instances where the properties will change over the animation.<br>
-    </p>
-    <pre class="prettyprint">
+}
+</pre>
+                            <p>Then, according to browser define the keyframes: They are instances where the properties will change over the animation.</p>
+<pre class="prettyprint">
 @keyframes dealIn {
     0% { transform: scale(0.6); transform-origin: 47% 53%;}
     25% {transform: scale(1.4) rotate(-56deg);transform-origin: 37% 53%;}
@@ -102,10 +135,23 @@
          -moz-transform: scale(1.0) rotate(304deg) translateX(273px) translateY(205px);
          -moz-transform-origin: 50% 50%;
          }
-}</pre>
-    <p>Try it!</p>
-    <h2>ACKNOWLEDGEMENTS</h2>
-<p>Made by Bacardo (bacardo@gmail.com) at Zauber Hackatons (http://zaubersoftware.com)</p>
+}
+</pre>
+                 
 
+
+                        
+            
+
+
+
+                    <footer class="main-footer">
+                        <p>Made by <em>Bacardo</em> (<a href="http://www.twitter.com/donbacardo">Twitter: @donbacardo</a>) at Zauber Hackatons (<a href="http://zaubersoftware.com">http://zaubersoftware.com</a>)
+                        </p>
+                    </footer>
+                </div>
+            </div>
+        </article>
     </body>
 </html>
+   
