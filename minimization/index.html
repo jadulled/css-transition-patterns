@@ -6,24 +6,248 @@
          <script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
         <script type="text/javascript" src="../scripts/css3-mediaqueries.js"></script>
         <link rel="stylesheet" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="../stylesheets/bootstrap.min.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="../stylesheets/1140.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" media="screen" />
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700' rel='stylesheet' type='text/css'>
         <!--[if IE]>
             <link rel="stylesheet" href="../stylesheets/ie.css" type="text/css" media="screen" />
         <![endif]-->
     </head>
-    <body class="tutorial-article">
-        <div class="container">
-            <div class="row">
-                <div class="onecol">
-                      <h1>Minimization</h1>
-                      <a href="#">Live example</a>
-                      <h2>Tutorial</h2>
-                      <p>
-                      </p>
+    <body  onload="prettyPrint()"  class="tutorial-article">
+        <div class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="brand" href="#">
+                  CSS Transition patterns
+                </a>
+            </div>
+          </div>
+        </div>
+        
+        <article class="container-fluid">
+            <div class="row-fluid">
+                <hgroup class="span12 main-title">
+                    <h1>Minimization: help button</h1>
+                    
+                    <h2 class="subtitle">Based on the <em>Fan of stack</em> pattern from <a href="http://www.ui-transitions.com/#categories">UI Transitions</a> (look into the orientation category)</h2>
+                </hgroup>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <h3>Description</h3>
+                            <p class="intro">Una acción auxiliar, en un espacio reducido, se expande hasta ocupar toda la pantalla.</p>
+                        </div>
+                        <div class="span4 offset8">
+                            <h3>Working Demo</h3>
+                            <p><a class="btn btn-primary btn-large" href="example.html">Working demo</a></p>
+                            <p class="alert alert-info">
+                                Also hosted on <strong><a href="http://jsfiddle.net/demenece/W3tem/">jsfiddle</a></strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2>The HTML needed</h2>
+                    <ol>
+                        <li>
+                            <p>La accion auxiliar que usaremos sera un help button, un div con la clase <code>"hashCircle"</code> que es el que se va a expandir y se convertira en la nueva “ventana” con informacion. Este estara contenido en un div que oculte todo lo que sea mas grande que el, ese contenedor sera <code>"totalContainer"</code>. </p>
+                        </li>
+                        <li>
+                            <p>Las transitions se van a hacer apartir de que el <code>"totalContainer"</code> va a tener la clase active cuando se haya hecho click en el help button o no tenga la clase, cuando este navegando normalmente.</p>
+                        </li>
+                        <li>
+                            <p>El help button, tiene como hermano un div con la informacion que se quiera mostrar, este div es <code>"hashCircleInfo"</code>. </p>
+                        </li>
+                    </ol>
+<pre class="prettyprint">
+&lt;div class="totalCotainer"&gt;
+    &lt;div class="hashCircle"&gt;
+        &lt;h2 class="hashCircleLabel"&gt; ?&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class="hashCircleInfo"&gt;
+        &lt;h2&gt;Help Info&lt;/h2&gt;
+        &lt;p&gt;But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+                    <h2>The CSS needed</h2>
+                    <ol>
+                        <li>
+                        <p>El <code>"totalContainer"</code> necesitaria tener definidos los siguientes estilos:</p>
+<pre class="prettyprint">
+.totalCotainer{
+    overflow: hidden;
+    width: 300px; /*algun tamaño fijo */
+    min-height: 400px;
+    position: relative;
+} 
+</pre>
+                            
+                         <p>tambien tiene otros estilos que pueden modificarse o sacarse:</p>
+<pre class="prettyprint">
+.totalCotainer{
+    background:#fff;
+    border: 3px solid #ddd;
+    margin: 10px auto;
+} 
+</pre>
+                        </li>
+                        <li>
+                        <p>El help button, que es el div con la clase <code>"hashCircle"</code> tiene estilos necesarios para que se apliquen las transitions y para ubicarlo. Tambien se le define al elemento el tiempo de duracion y el ease-in que hace mas natural la transition:</p>
+<pre class="prettyprint">
+.hashCircle{
+    display: block;
+    cursor:pointer;
+    position:absolute;
+    bottom: 14px;
+    right: 23px;
+    transition: 1s ease-in;
+    -moz-transition: 1s ease-in; /* Firefox 4 */
+    -webkit-transition: 1s ease-in; /* Safari and Chrome */
+    -o-transition: 1s ease-in; /* Opera */
+}
+</pre>
+                        <p>Tiene tambien estilos de formato, que son modificables:</p>
+<pre class="prettyprint">
+.hashCircle{
+    background: none repeat scroll 0 0 #5ECDEB;
+    border-radius: 1300px 1300px 1300px 1300px;
+    -webkit-border-radius: 1300px 1300px 1300px 1300px;
+    -moz-border-radius: 1300px 1300px 1300px 1300px;
+}
+</pre>
+                        <p>Definimos tambien el css para el estado activo, es decir, cuando el <code>"totalContainer"</code> tiene la clase <code>"active"</code> (se agrega una vez hecho click en el help button). En esta instancia lo que necesitamos es que el boton se expanda ocupando toda la pantalla, lo que usamos entonces es una transition de escala:</p>
+<pre class="prettyprint">
+.totalCotainer.active .hashCircle{
+    -moz-transform:scaleX(80) scaleY(80);
+    -webkit-transform:scaleX(80) scaleY(80);
+}
+</pre>
+                        </li>
+                        <li>
+                        <p>Estilo para el contenido del <code>"hashCircle"</code>, en este caso es un <code>&lt;h2 class="hashCircleLabel"&gt;</code> ya que necesitamos que su opacidad cambie al expanderse, y necesitamos definir en que tiempo queremos que cambie esta opacidad, lo que es tambien una transition.</p>
+                        <p>Agregamos delay a esta transition para que el signo <strong>?</strong> del help button no pise al contenido (<code>"hashCircleInfo"</code>) cuando se hace visible. Este delay fue de 0.3s, este valor es el ultimo que se define.</p>
+<pre class="prettyprint">
+.hashCircle .hashCircleLabel{
+    color: #FFFFFF;
+    padding: 4px 11px;
+    text-align: center;
+    opacity:1;
+    transition: 0.5s ease-in 0.3s;
+    -moz-transition: 0.5s ease-in 0.3s; /* Firefox 4 */
+    -webkit-transition: 0.5s ease-in 0.3s; /* Safari and Chrome */
+    -o-transition: 0.5s ease-in 0.3s; /* Opera */
+}
+</pre>
+                    <p>y los estilos para cuando este activo el boton, cambian los valores de la transition y no tiene delay:</p>
+<pre class="prettyprint">
+.totalCotainer.active .hashCircle .hashCircleLabel{
+    opacity:0;
+    transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in; /* Firefox 4 */
+    -webkit-transition: 0.5s ease-in; /* Safari and Chrome */
+    -o-transition: 0.5s ease-in; /* Opera */
+}
+</pre>
+                        </li>
+                        <li>
+                        <p>El contenido del <code>"hashCircle"</code>, que seria <code>"hashCircleInfo"</code> necesita no estar visible cuando no este activo y tiene definidos los estilos de su transicion de escala y de ubicacion, que deberia ser la misma que el help button o accion auxiliar ya que necesita seguir la transition del help button y asi parecer que salio de el.</p>
+<pre class="prettyprint">
+.hashCircleInfo{
+    -moz-transform:scaleX(0.01) scaleY(0.01);
+    -webkit-transform:scaleX(0.01) scaleY(0.01) translateY(30px);
+    transition: 1s;
+    -moz-transition: 1s; /* Firefox 4 */
+    -webkit-transition: 1s; /* Safari and Chrome */
+    -o-transition: 1s; /* Opera */
+    opacity:0;
+    position:absolute;
+    bottom: 14px;
+    right: 0;
+}
+</pre>
+
+                        <p>Por otro lado tiene css para darle formato que son estilos modificables:</p>
+<pre class="prettyprint">
+.hashCircleInfo{
+    color:#fff;
+    padding: 24px;
+    font-size:13px;
+}
+</pre>
+                    <p> Por otro lado, se definen los estilos en su estado activo, en el que se define la transition de escala, de movimiento en el eje X y en el eje Y para ubicarlo dentro de la pagina, para asi agrandarse junto con el boton y aumentar su opacidad para ser visible:</p>
+<pre class="prettyprint">
+.totalCotainer.active .hashCircleInfo{
+    -moz-transform:scaleX(1) scaleY(1) translateY(-190px);
+    -webkit-transform:scaleX(1) scaleY(1) translateY(-190px);
+    opacity:1;
+    display:block;
+    z-index: 6;
+}
+</pre>
+                        </li>
+                   </ol>
+                   
+                   <h2>Javascript</h2>
+
+                        <p>Para que este estado activo exista es necesario agregar js. Para esto necesitamos:</p>
+                        <ol>
+                            <li>
+                                <p>Por un lado un script para que funcione jquery:</p>
+<pre class="prettyprint">
+ &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"&gt; &lt;/script&gt;
+</pre>
+                            </li>
+                            <li>
+                                <p>Y necesitamos crear la funcion que agrega la clase</p>
+<pre class="prettyprint">
+&lt;script type="text/javascript"&gt;
+    doThings= function(){
+                    $('.totalCotainer').addClass('active'); 
+              }
+&lt;/script&gt;
+</pre>
+                            </li>
+                            <li>
+                                <p>y se la agregaremos al help button:</p>
+<pre class="prettyprint">
+&lt;div class="hashCircle" onclick="doThings()"&gt;
+</pre>
+                            </li>
+                        </ol>
+                        
+                   <h2>Casi terminado: opcion volver</h2>
+                        <p>Por ultimo se agrega dentro de <code>"totalContainer"</code> un link, <code>"back"</code>, que nos permita salir de la ventana del help button, se agrega con js inline, que saca el estilo active al hacer click y asi salir del help button: </p>
+<pre class="prettyprint">
+    &lt;a class="back" href="#" onclick="$('.totalCotainer').removeClass('active');"&gt;volver&lt;/a&gt;
+</pre>
+                        <p>Cuando no se esta en la ventana de help button (osea sin la clase active) el boton de <code>"back"</code> no tiene que estar visible y cuando esta en active, aparece. Tambien tiene un estado hover que es modificable.</p>
+<pre class="prettyprint">
+a.back{
+    background: url("http://www.pedaling.com/images/go-back-icon.png") no-repeat scroll center center #ffffff;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    text-indent: -9999px;
+    top: 0;
+    margin:6px;
+    width: 30px;
+    z-index: 7;
+    display:none;
+}
+a.back:hover{  background-position: 2px 0;}
+.totalCotainer.active  a.back{display:block}
+</pre>
+
+                    <footer class="main-footer">
+                        <p>Made by <em>Stefania Spangenberg</em> at Zauber Hackatons (<a href="http://zaubersoftware.com">http://zaubersoftware.com</a>)
+                        </p>
+                    </footer>
                 </div>
             </div>
-        </div>
+        </article>
     </body>
 </html>
