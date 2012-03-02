@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>CSS Transition Patterns - Slider</title>
+        <script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+        <script type="text/javascript" src="../scripts/css3-mediaqueries.js"></script>
+        
+        <link rel="stylesheet" href="../stylesheets/1140.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" media="screen" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <!--[if IE]>
+            <link rel="stylesheet" href="../stylesheets/ie.css" type="text/css" media="screen" />
+        <![endif]-->
+    </head>
+    <body onload="prettyPrint()" class="tutorial-article">
+        <h1>Slider</h1>
+        <h2>DESCRIPTION</h2>
+        <p>This is based on the &ldquo;Slide&rdquo; pattern from <a href="http://www.ui-transitions.com/#categories">http://www.ui-transitions.com/#categories</a> (look into the orientation category)</p>
+        <p>When the user clicks and drags over an element, it should slide out and show the next content.</p>
+        
+        <h2 class="alert">NOT POSSIBLE TO BE DONE WITHOUT JS&hellip; (yet!)</h2>
+        <p>As Drag &amp; Drop in HTML5 is <a href="">pretty bad</a>, blablabla</p>
+
+        <h2>WORKING DEMO</h2>
+        <p><a href="fan-of-stack/">Working demo</a> (i&apos;ve also hosted it on <strong>jsfiddle</strong>: <a href="http://jsfiddle.net/demenece/W3tem/">http://jsfiddle.net/demenece/W3tem/</a>)</p>
+
+        <h2>HTML</h2>
+        <p>an <code>&lt;ul&gt;</code> with a class we can refer (elements in my case)<p>
+
+        <pre class="prettyprint">
+            &lt;ul class="elements"&gt;
+                &lt;li&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        </pre>
+
+        <h2>CSS</h2>
+        <ol>
+            <li>
+                <p>It&apos;s needed to add <code>position:relative</code> so the <code>&lt;li&gt;</code> are positioned related to it. You need also to set some padding and margin so the <code>&lt;ul&gt;</code> can fill some space.</p>
+                <pre class="prettyprint">
+                    .elements{
+                        margin: 100px;
+                        padding: 40px;
+                        position: relative;
+                    }
+                </pre>
+            </li>
+            <li>
+                <p>Set a width and height for each <code>&lt;li&gt;</code> (in my example, i&apos;m using padding instead of height so the content inside can be centered vertically), we use <code>position:absolute</code> so they stack.</p>
+                <p>We must add the transition here. Below this, there is some extra styling to make it look better ;).</p>
+                <pre class="prettyprint">
+                    .elements li{
+                        position: absolute;
+                        padding: 20px 0;
+                        width: 60px;
+                        -moz-transition: all .25s ease-in-out;
+                        -webkit-transition: all .25s ease-in-out;
+                        transition: all .25s ease-in-out;
+                        background-color: #EEE;
+                        border: 2px solid #FFF;
+                        box-shadow: 0 0 5px #888;
+                        text-align: center;
+                    }
+                </pre>
+            </li>
+            <li>
+                <p>Now we have to select each of the <code>&lt;li&gt;</code> and translate them clockwise, starting by placing the first above and to the left:</p>
+                <pre class="prettyprint">
+                    .elements:hover li:nth-child(1) {
+                        -moz-transform: rotate(-15deg) translate(-2.5em,-2.5em);
+                        -webkit-transform: rotate(-15deg) translate(-2.5em,-2.5em);
+                        transform: rotate(-15deg) translate(-2.5em,-2.5em);
+                    }
+                </pre>
+                <p>I’ve also added a rotate to make it feel more natural. I’ve apply this only to the first six elements, so the second element has to be translated just upside, without any rotation:</p>
+                <pre class="prettyprint">
+                    .elements:hover li:nth-child(2n) {
+                        -moz-transform: translate(-0.5em,-3em);
+                        -webkit-transform: translate(-0.5em,-3em);
+                        transform: translate(-0.5em,-3em);
+                    }
+                </pre>
+            </li>
+            <li>
+                <p>To indicate this is a stack, we can rotate some of the elements a bit in the static instance:</p>
+                <pre class="prettyprint">
+                    .elements li:nth-child(5) {
+                        -moz-transform: rotate(7deg);
+                        -webkit-transform: rotate(7deg);
+                        transform: rotate(7deg);
+                    }
+                </pre>
+            </li>
+        </ol>
+        <footer>
+        <p>Made by <em>Damian Calderon</em> (<a href="http://www.twitter.com/demenece">http://www.twitter.com/demenece</a>) at Zauber Hackatons (<a href="http://zaubersoftware.com">http://zaubersoftware.com</a>)
+        </p>
+        </footer>
+    </body>
+</html>
