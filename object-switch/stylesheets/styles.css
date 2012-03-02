@@ -1,20 +1,20 @@
 .container {
     position: relative;
     width: 100px;
-    height: 100px;
+    height: 120px;
     margin: 30px auto;
-    overflow: hidden;
-}
-.contenedor-foto {
-    position: absolute;
-    width: 100px;
-    height: 100px;
     overflow: hidden;
 }
 .img {
     width: 100%;
 }
-.adelante {
+.image {
+    position: absolute;
+    width: 100px;
+    height: 120px;
+    overflow: hidden;
+}
+.front {
     z-index: 10;
 }
 
@@ -64,3 +64,4 @@
    -webkit-transform: matrix(.8, 0, 0, .8, 0, 0) perspective(1000) rotateY(0deg);
  }
 }
+​​

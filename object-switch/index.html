@@ -1,129 +1,166 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-        <title>CSS Transition Patterns - Object Switch</title>
-        <script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
-        <link rel="stylesheet" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" type="text/css" media="screen">
-
-    </head>
-    <body onload="prettyPrint()" class="tutorial-article">
-        <h1>Object Switch</h1>
-        <h2>DESCRIPTION</h2>
-	<p>Esta animación se puede usar para mostrar el cambio entre elementos en una pantalla. 
-	El que está adelante pasa al fondo y el del fondo viene hacia adelnate.</p>
-
-	<h2>HTML</h2>
-	<p>En el ejemplo hay dos <div> que son los 'objetos' que se van a intercambiar.</p>
-
-	<h2>CSS</h2>
-<ol>
-<li>Hay un contenedor principal, con los objetos adentro. Este tiene overflow:hidden para que se vea el efecto.
-	<pre class="prettyprint">
-	.container {
-	    position: relative;
-	    width: 100px;
-	    height: 100px;
-	    margin: 30px auto;
-	    overflow: hidden;
-	}
-	</pre>
-</li>
-<li>Se le da estilo a los 'objetos'. En este caso les puse una imágen adentro.
-	<pre class="prettyprint">
-	.contenedor-foto {
-	    position: absolute;
-	    width: 100px;
-	    height: 100px;
-	    overflow: hidden;
-	}
-	.img {
-	    width: 100%;
-	}
-	</pre>
-</li>
-<li>Al elemento que queremos que aparezca adelante se le agrega la clase .adelante, que después se intercambiará entre los 'objetos'.
-	<pre class="prettyprint">
-	.adelante {
-	    z-index: 10;
-	}
-	</pre>
-</li>
-<li>Una vez que el JS hace su 'magia' se aplican las diferentes animaciones.
-	<pre class="prettyprint">
-	.zoom-in {
-	    -webkit-animation-name: zoom-in;
-	    -webkit-animation-duration: .7s;
-	    -webkit-animation-iteration-count: 1;
-	    -webkit-animation-direction: alternate;
-	}
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>CSS Transition Patterns - Object Switch</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+		<script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+		<link rel="stylesheet" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../stylesheets/bootstrap.min.css" type="text/css" media="screen" />
+		<link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" media="screen" />
+		<!--[if IE]>
+		<link rel="stylesheet" href="stylesheets/ie.css" type="text/css" media="screen" />
+		<![endif]-->
+	</head>
 	
-	@-webkit-keyframes zoom-in {
-	    00% {
-	   -webkit-transform: matrix(.6, 0, 0, .6, 0, 0) perspective(900) rotateY(0deg);
-	   z-index: 0;
-	 }
-	   50% {
-	   -webkit-transform: matrix(.8, 0, 0, .8, 75, 0) perspective(500) rotateY(0deg);
-	    z-index: 0;
-	 }
-	   100% {
-	   -webkit-transform: matrix(1, 0, 0, 1, 0, 0) perspective(1000) rotateY(0deg);
-	    
-	 }
-	}
-	.zoom-out {
-	    -webkit-animation-name: zoom-out;
-	    -webkit-animation-duration: .7s;
-	    -webkit-animation-iteration-count: 1;
-	    -webkit-animation-direction: alternate;
-	    -webkit-transition-timing-function: ease-in-out;
-	}
-	@-webkit-keyframes zoom-out {
-	   0% {
-	   -webkit-transform: matrix(1, 0, 0, 1, 0, 0) perspective(900) rotateY(0deg);
-	    z-index: 10;
-	 }
-	   33% {
-	   -webkit-transform: matrix(1.2, 0, 0, 1.2, -75, 0) perspective(900) rotateY(0deg);
-	 }
-	   75% {
-	   -webkit-transform: matrix(.6, 0, 0, .6, -20, 0) perspective(900) rotateY(0deg);
-	 }
-	   100% {
-	   -webkit-transform: matrix(.8, 0, 0, .8, 0, 0) perspective(1000) rotateY(0deg);
-	 }
-	}
-	</pre>
-</li>
-</ol>
-<h2>JS</h2>
-<p>El JS sirve para agregar o quitar las clases necesarias para que la se logre el efecto que queremos en la animación.</p>
-	<pre class="prettyprint">
-	$(function() {
-	    $('.stackable').click(function() {
 	
-		//Se definen las variables
-		var adelante = $(".stackable.adelante");       //esta variable identifica al objeto que está adelante
-		var atras = $(".stackable:not(.adelante)");    //esta variable identifica al objeto que está atras 
-	        
-	        //Se cambian las clases según el estadop del 'objeto'
-		atras.addClass("zoom-in");                     //al objeto que está atrás se le agrega la clase 'zoom-in', 
-								 que dispara la animación hacia adelante.
-		atras.addClass("adelante");                    //al objeto que está atrás se le agrega la clase 'adelante', 
-								 asi al terminar la animación queda delante del otro.
-		adelante.addClass("zoom-out");                 //al objeto que está atrás se le agrega la clase 'zoom-out', 
-								 que dispara la animación hacia atrás.
-		adelante.removeClass("adelante");              //al objeto que está atrás se le quita la clase 'adelante', 
-								 asi al terminar la animación queda detrás del otro.
-	    });
-	    
-		$('.stackable').bind("webkitAnimationEnd", function() {
-			$(".stackable").removeClass("zoom-in zoom-out");
-		});
-	});
-	</pre>
-<h2>ACKNOWLEDGEMENTS</h2>
-<p>Made by Sebastian Zelonka (http://www.twitter.com/sebazelonka) at Zauber Hackatons (http://zaubersoftware.com)</p>
+	
+	
+	<body onload="prettyPrint()" class="tutorial-article">
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="brand" href="#"> CSS Transition patterns </a>
+				</div>
+			</div>
+		</div>
+		<article class="container-fluid">
+			<div class="row-fluid">
+                <hgroup class="span12 main-title">
+                    <h1>Object Switch</h1>
+                    
+                    <h2 class="subtitle">Based on the <em>Object Switch</em> pattern from <a href="http://www.ui-transitions.com/#categories">UI Transitions</a> (look into the orientation category)</h2>
+                </hgroup>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <h3>Description</h3>
+                            <p class="intro">This animation can be used when the user switches between objects on the screen. The front object moves to the back, while the new object moves to the front.</p>
+                        </div>
+                        <div class="span4 offset8">
+                            <h3>Working Demo</h3>
+                            <p><a class="btn btn-primary btn-large" href="example.html">Working demo</a></p>
+                            <p class="alert alert-info">
+                                Also hosted on <strong><a href="http://jsfiddle.net/sebazelonka/YvqmW/">jsfiddle</a></strong>
+                            </p>
+                        </div>
+                    </div>
+		<h2>The HTML needed</h2>
+		<p>Two interchangeable <code>&lt;div&gt;</code>. One have the class <code>.front</code> to bring the element to the front.</p>
+<pre class="prettyprint">
+&lt;div class="container"&gt;
+    &lt;div class="image front"&gt;
+    &lt;div class="image"&gt;
+&lt;/div&gt;
+</pre>
+		<h2>The CSS needed</h2>
+		<ol>
+			<li><p>The main container has the interchangeable elements inside. The property <code>overflow:hidden</code> serves to achieve the expected effect. It's needed to add <code>position:relative</code> so the <code>&lt;div class="image"&gt;</code> are positioned related to it.</p>
+<pre class="prettyprint">
+.container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 30px auto;
+    overflow: hidden;
+}
+</pre>
+			</li>
+			<li><p>The object container has the images inside them. The property <code>position:absolute</code> serves to achieve the expected location for each element.</p>			
+<pre class="prettyprint">
+.image {
+    position: absolute;
+    width: 100px;
+    height: 120px;
+    overflow: hidden;
+}
+.img {
+    width: 100%;
+}
+</pre>
+			</li>
+			<li><p>Add the class <code>.front</code> to bring the element to the front.</p>
+<pre class="prettyprint">
+.front {
+    z-index: 10;
+}
+</pre>
+			</li>
+			<li><p>We'll add or remove <code>.front</code> with JS. In each case, we'll apply differents animations and transitions.</p>
+<pre class="prettyprint">
+.zoom-in {
+    -webkit-animation-name: zoom-in;
+    -webkit-animation-duration: .7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes zoom-in {
+    00% {
+   -webkit-transform: matrix(.6, 0, 0, .6, 0, 0) perspective(900) rotateY(0deg);
+   z-index: 0;
+ }
+   50% {
+   -webkit-transform: matrix(.8, 0, 0, .8, 75, 0) perspective(500) rotateY(0deg);
+    z-index: 0;
+ }
+   100% {
+   -webkit-transform: matrix(1, 0, 0, 1, 0, 0) perspective(1000) rotateY(0deg);
+    
+ }
+}
+.zoom-out {
+    -webkit-animation-name: zoom-out;
+    -webkit-animation-duration: .7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: alternate;
+    -webkit-transition-timing-function: ease-in-out;
+}
+@-webkit-keyframes zoom-out {
+   0% {
+   -webkit-transform: matrix(1, 0, 0, 1, 0, 0) perspective(900) rotateY(0deg);
+    z-index: 10;
+ }
+   33% {
+   -webkit-transform: matrix(1.2, 0, 0, 1.2, -75, 0) perspective(900) rotateY(0deg);
+ }
+   75% {
+   -webkit-transform: matrix(.6, 0, 0, .6, -20, 0) perspective(900) rotateY(0deg);
+ }
+   100% {
+   -webkit-transform: matrix(.8, 0, 0, .8, 0, 0) perspective(1000) rotateY(0deg);
+ }
+}
+</pre>
+            </li>
+        </ol>
+        <h2>The Javascript needed</h2>
+        <p>The JS serves for add or remove the class <code>.front</code>, <code>.zoom-in</code> and <code>.zoom-out</code> dynamically to achieve, in combination with CSS, the correct behavior to our animation.</p>
+<pre class="prettyprint">
+$(function() {
+    $('.stackable').click(function() {
+        var adelante = $(".stackable.adelante");       
+        var atras = $(".stackable:not(.adelante)");  
+            
+        atras.addClass("zoom-in");                      
+        atras.addClass("adelante");                     
+        adelante.addClass("zoom-out");                 
+        adelante.removeClass("adelante");
+    });
+    
+    $('.stackable').bind("webkitAnimationEnd", function() {
+        $(".stackable").removeClass("zoom-in zoom-out");
+    });
+});
+</pre>
+        <footer class="main-footer">
+        <p>Made by <a href="http://www.twitter.com/sebazelonka">Sebastian Zelonka</a> at <a href="http://zaubersoftware.com">Zauber</a> Hackatons</p>
+        </footer>
+                </div>
+        </article>
     </body>
 </html>
