@@ -63,13 +63,15 @@
                         <li>
                             <h3>Body:</h3>
 <pre class="prettyprint">
-    &lt;div id="card"&gt;
-         &lt;p&gt;Test Card.&lt;/p&gt;
-         &lt;a class="button" href="#" onclick="$('#card').addClass('discardOnClose');"&gt;Close&lt;/a&gt;
+    &lt;div id="container"&gt;
+      &lt;div id="card"&gt;
+           &lt;p&gt;Test Card.&lt;/p&gt;
+           &lt;a class="button" href="#" onclick="$('#card').addClass('discardOnClose');"&gt;Close&lt;/a&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
 </pre>
                     <p>Adding the class "discard" to the event "onclick" with jquery we can trigger the action.</p>
-                    <ol>
+                   
 <pre class="prettyprint">
 &lt;a class="button" href="#" onclick="$('#card').addClass('discardOnClose');"&gt;Close&lt;/a&gt;
 </pre>
@@ -94,6 +96,8 @@
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
   animation-direction: normal;
+  animation-fill-mode:forwards;
+
 /*For webkit*/
   -webkit-animation-name: discardOnClose;
   -webkit-animation-duration: 1s;
@@ -101,6 +105,8 @@
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-direction: normal;
+  -webkit-animation-fill-mode:forwards;
+
 /*For Mozilla*/
   -moz-animation-name: discardOnClose;
   -moz-animation-duration: 1s;
@@ -108,13 +114,15 @@
   -moz-animation-iteration-count: 1;
   -moz-animation-timing-function: ease-in-out;
   -moz-animation-direction: normal;
-  
+  -moz-animation-fill-mode:forwards;
 }
 
 
 </pre>
                           </li>
                           <li>
+                          <p>The property animation-fill-mode specify whether the effects of an animation are visible before or after it plays. A value of backwards causes the styles in the first keyframe to be applied before the animation runs. A value of forwards causes the styles in the last keyframe to be applied after the animation runs. A value of both does both.</p>
+
                             <p>Then, according to browser define the keyframes: They are instances where the properties will change over the animation.</p>
                           
 <pre class="prettyprint">
