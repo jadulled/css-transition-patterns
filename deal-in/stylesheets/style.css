@@ -1,4 +1,4 @@
-#animateTest {
+#card {
     text-align: center;
     background: #FE0000;
     padding: 40px;
@@ -37,23 +37,23 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 
-.dealIn{
+.discardOnClose{
 
-  animation-name: dealIn;
-  animation-duration: 1s ease-in-out;
+  animation-name: discardOnClose;
+  animation-duration: 1s;
   animation-delay: 0s;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
   animation-direction: normal;
 
-  -webkit-animation-name: dealIn;
+  -webkit-animation-name: discardOnClose;
   -webkit-animation-duration: 1s;
   -webkit-animation-delay: 0s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-direction: normal;
 
-  -moz-animation-name: dealIn;
+  -moz-animation-name: discardOnClose;
   -moz-animation-duration: 1s;
   -moz-animation-delay: 0s;
   -moz-animation-iteration-count: 1;
@@ -62,18 +62,25 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   
 }
 
-@keyframes dealIn {
+@keyframes discardOnClose {
 
-  0% { transform: scale(0.6); transform-origin: 47% 53%;
+  0% { 
+        transform: scale(0.6); 
+        transform-origin: 47% 53%; /*setting the initial values for the properties that will change*/
   }
-  25% {transform: scale(1.4) rotate(-56deg);transform-origin: 37% 53%;
+  25% {
+        transform: scale(1.4) 
+        rotate(-56deg);
+        transform-origin: 37% 53%; /*changing the transformation origin makes the center displacement*/
   }
-  100% {transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);
-        transform-origin: 50% 50%;
+  100% {transform: scale(1.0) 
+        rotate(344deg) 
+        transform-origin: 50% 50%; 
+        translateX(600px) translateY(800px); /*move to left */
   }
 }
 
-@-webkit-keyframes dealIn {
+@-webkit-keyframes discardOnClose {
 
   0% {
 -webkit-transform: scale(0.6);
@@ -86,12 +93,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
 
   100% {
--webkit-transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);
+-webkit-transform: scale(1.0) rotate(344deg) translateX(600px) translateY(800px); /*move to left */
 -webkit-transform-origin: 50% 50%;
   }
 }
 
-@-moz-keyframes dealIn {
+@-moz-keyframes discardOnClose {
 
   0% {
 -moz-transform: scale(0.6);
@@ -103,7 +110,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 -moz-transform-origin: 37% 53%;
   }
  100% {
--moz-transform: scale(1.0) rotate(304deg) translateX(273px) translateY(205px);
+-moz-transform: scale(1.0) rotate(344deg) translateX(600px) translateY(800px); /*move to left */
 -moz-transform-origin: 50% 50%;
   }
 }

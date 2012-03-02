@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-        <title>Deal In - CSS Transition Patterns</title>
+        <title>Discard - CSS Transition Patterns</title>
                
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
@@ -30,8 +30,8 @@
 <article class="container-fluid">
             <div class="row-fluid">
                 <hgroup class="span12 main-title">
-                    <h1>Deal In</h1>
-                    <h2 class="subtitle">Based on the <em>Saving indicator</em> pattern from <a href="http://www.ui-transitions.com/#categories">UI Transitions</a> (look into the orientation transition), but in reverse mode, make a dealing effect to a canvas</h2>  
+                    <h1>Discard</h1>
+                    <h2 class="subtitle">Based on the <em>Saving indicator</em> pattern from <a href="http://www.ui-transitions.com/#categories">UI Transitions</a> (look into the orientation transition), but in reverse mode, make a discard effect to a canvas</h2>  
                 </hgroup>
             </div>
 
@@ -40,7 +40,7 @@
                     <div class="row-fluid">
                         <div class="span8">
                             <h3>Description</h3>
-                                <p class="intro">We are using the animation tools from <a href="http://westciv.com/tools/animations/">WestCiv</a> that allows to change the animation properties in real-time with graphical interface. Making the task a lot easier. With the <a href="http://daneden.me/animate/">Daneden</a> html code we trigger the animations (by jquery changes the button style when clicked)</p>
+                                <p class="intro">Clicking the card close button will trigger an animation of discard to the right</p>
 
                         </div>
                         <div class="span4 offset8">
@@ -51,6 +51,7 @@
                     </div>
 
                     <h2>The HTML needed</h2>
+                    <p>We are using the animation tools from <a href="http://westciv.com/tools/animations/">WestCiv</a> that allows to change the animation properties in real-time with graphical interface. Making the task a lot easier. With the <a href="http://daneden.me/animate/">Daneden</a> html code we trigger the animations (by jquery changes the button style when clicked)</p>
                     <ol>
                         <li>
                             <h3>Head Section:</h3>
@@ -62,77 +63,102 @@
                         <li>
                             <h3>Body:</h3>
 <pre class="prettyprint">
-&lt;div id="animateTest"&gt;<br>   &lt;p&gt;Test Card.&lt;/p&gt;&lt;/div&gt;
-&lt;a class="butt butt-small" href="#" onclick="$('#animateTest').addClass('dealIn');"&gt;dealIn&lt;/a&gt;
+    &lt;div id="card"&gt;
+         &lt;p&gt;Test Card.&lt;/p&gt;
+         &lt;a class="button" href="#" onclick="$('#card').addClass('discardOnClose');"&gt;Close&lt;/a&gt;
+    &lt;/div&gt;
 </pre>
+                    <p>Adding the class "discard" at the event "onclick" with jquery we can trigger the action.</p>
+                    <ol>
+<pre class="prettyprint">
+&lt;a class="button" href="#" onclick="$('#card').addClass('discardOnClose');"&gt;Close&lt;/a&gt;
+</pre>
+
                         </li>
                        
                     </ol>   
-                    <h2>The HTML needed</h2>
+                    <h2>The CSS needed</h2>
 
                             <p>In css are two two things to define:</p> 
                             <p>First, give a name to the animation and use the global properties like animation name, duration, delay, iteration count, type of easing, and direction</p>
                             <p>Let's see:</p>
                         
 <pre class="prettyprint">
-.dealIn {
-/*W3C*/
-     animation-name: dealIn; /*use this name to call the animation*/
-     animation-duration: 1s ease-in-out;
-     animation-delay: 0s;
-     animation-iteration-count: 1; /*can be a number or infinite*/
-     animation-timing-function: ease-in-out; animation-direction: normal; /* if you want to &ldquo;rewind&rdquo; use the option alternate.*/
 
+.discardOnClose{
+/*W3C*/
+  animation-name: discardOnClose;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
 /*For webkit*/
-    -webkit-animation-name: dealIn;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-delay: 0s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-direction: normal;
+  -webkit-animation-name: discardOnClose;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-direction: normal;
 /*For Mozilla*/
-    -moz-animation-name: dealIn;
-    -moz-animation-duration: 1s;
-    -moz-animation-delay: 0s;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: ease-in-out;
-    -moz-animation-direction: normal;
+  -moz-animation-name: discardOnClose;
+  -moz-animation-duration: 1s;
+  -moz-animation-delay: 0s;
+  -moz-animation-iteration-count: 1;
+  -moz-animation-timing-function: ease-in-out;
+  -moz-animation-direction: normal;
+  
 }
+
+
 </pre>
                             <p>Then, according to browser define the keyframes: They are instances where the properties will change over the animation.</p>
 <pre class="prettyprint">
-@keyframes dealIn {
-    0% { transform: scale(0.6); transform-origin: 47% 53%;}
-    25% {transform: scale(1.4) rotate(-56deg);transform-origin: 37% 53%;}
-    100% {transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);transform-origin: 50% 50%;}
+@keyframes discardOnClose {
+  0% { 
+        transform: scale(0.6); 
+        transform-origin: 47% 53%; /*setting the initial values for the properties that will change*/
+  }
+  25% {
+        transform: scale(1.4) 
+        rotate(-56deg);
+        transform-origin: 37% 53%; /*changing the transformation origin makes the center displacement*/
+  }
+  100% {transform: scale(1.0) 
+        rotate(344deg) 
+        transform-origin: 50% 50%; 
+        translateX(600px) translateY(800px); /*move to left */
+  }
 }
-@-webkit-keyframes dealIn {
-    0%   { 
-         -webkit-transform: scale(0.6);
-         -webkit-transform-origin: 47% 53%;
-        }
-    25%  {
-         -webkit-transform: scale(1.4) rotate(-56deg);
-         -webkit-transform-origin: 37% 53%;
-        }
-    100% {
-         -webkit-transform: scale(1.0) rotate(344deg) translateX(273px) translateY(205px);
-         -webkit-transform-origin: 50% 50%;
-        }
+
+@-webkit-keyframes discardOnClose {
+  0% {
+-webkit-transform: scale(0.6);
+-webkit-transform-origin: 47% 53%;
+  }
+  25% {
+-webkit-transform: scale(1.4) rotate(-56deg);
+-webkit-transform-origin: 37% 53%;
+  }
+  100% {
+-webkit-transform: scale(1.0) rotate(344deg) translateX(600px) translateY(800px); /*move to left */
+-webkit-transform-origin: 50% 50%;
+  }
 }
-@-moz-keyframes dealIn {
-    0%   {
-         -moz-transform: scale(0.6);
-         -moz-transform-origin: 47% 53%;
-         }
-    25%  {
-         -moz-transform: scale(1.4) rotate(-56deg);
-         -moz-transform-origin: 37% 53%;
-         }
-     100%{
-         -moz-transform: scale(1.0) rotate(304deg) translateX(273px) translateY(205px);
-         -moz-transform-origin: 50% 50%;
-         }
+
+@-moz-keyframes discardOnClose {
+  0% {
+-moz-transform: scale(0.6);
+-moz-transform-origin: 47% 53%;
+  }
+  25% {
+-moz-transform: scale(1.4) rotate(-56deg);
+-moz-transform-origin: 37% 53%;
+  }
+ 100% {
+-moz-transform: scale(1.0) rotate(344deg) translateX(600px) translateY(800px); /*move to left */
+-moz-transform-origin: 50% 50%;
+  }
 }
 </pre>
                  
